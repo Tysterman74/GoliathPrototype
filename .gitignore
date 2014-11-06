@@ -17,3 +17,7 @@ temp/
 
 
 Library/metadata
+/Goliath/*.csproj
+/Goliath/*.unityproj
+/Goliath/*.sln
+/Goliath/*.suo
