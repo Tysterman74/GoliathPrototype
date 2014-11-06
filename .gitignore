@@ -17,3 +17,16 @@ temp/
 
 
 Library/metadata
+*.csproj
+*.unityproj
+*.sln
+/Goliath/Assembly-UnityScript-firstpass.unityproj
+/Goliath/Assembly-UnityScript-firstpass-vs.unityproj
+/Goliath/Assembly-UnityScript-vs.unityproj
+/Goliath/Goliath.sln
+/Goliath/Goliath-csharp.sln
+/Goliath/Assembly-CSharp.csproj
+/Goliath/Assembly-CSharp-firstpass.csproj
+/Goliath/Assembly-CSharp-firstpass-vs.csproj
+/Goliath/Assembly-CSharp-vs.csproj
+/Goliath/Assembly-UnityScript.unityproj
