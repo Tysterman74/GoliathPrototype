@@ -16,13 +16,13 @@ public class Hookshot3D : MonoBehaviour {
 
     private LineRenderer rope;
 
-    private bool grapple = false;
-    private bool floating = false;
-    private bool throwRope = false;
-    private bool drag = false;
-    private bool done = false;
-    private bool release = false;
-    private bool finishingDrag = false;
+    public bool grapple = false;
+    public bool floating = false;
+    public bool throwRope = false;
+    public bool drag = false;
+    public bool done = false;
+    public bool release = false;
+    public bool finishingDrag = false;
 
     private Vector2 ropePos;
 
@@ -91,6 +91,7 @@ public class Hookshot3D : MonoBehaviour {
             rope.SetPosition(1, destination.transform.position);
             float step = 20 * Time.deltaTime;
             player.transform.position = Vector2.MoveTowards(player.transform.position, destination.transform.position, step);
+            Debug.Log(destination.transform.position);
             if (player.transform.position == destination.transform.position)
             {
                 Debug.Log("Get money");
@@ -188,5 +189,12 @@ public class Hookshot3D : MonoBehaviour {
             rope.enabled = false;
             done = true;
         }
+    }
+
+    public void finishFloat()
+    {
+        player.gameObject.GetComponent<PlayerController3D>().enabled = true;
+        rope.enabled = false;
+        floating = false;
     }
 }

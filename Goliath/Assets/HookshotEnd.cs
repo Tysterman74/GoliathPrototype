@@ -24,7 +24,7 @@ public class HookshotEnd : MonoBehaviour {
     {
         if (col.gameObject.tag == "Player")
         {
-            hookshotBegin.GetComponent<Hookshot3D>().finishDrag();
+            hookshotBegin.GetComponent<Hookshot3D>().finishFloat();
         }
     }
 

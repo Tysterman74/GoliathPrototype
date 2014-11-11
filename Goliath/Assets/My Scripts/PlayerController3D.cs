@@ -52,6 +52,9 @@ public class PlayerController3D : MonoBehaviour {
     {
         //Physics.OverlapSphere
         Collider[] test = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
+        foreach (Collider t in test) {
+            Debug.Log(t.gameObject.transform.name);
+        }
         if (test != null)
             grounded = true;
         else
