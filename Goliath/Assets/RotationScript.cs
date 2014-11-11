@@ -26,16 +26,18 @@ public class RotationScript : MonoBehaviour {
         if (col.gameObject.tag == "Player" && !switchOn)
         {
             switchOn = true;
+            col.gameObject.rigidbody.velocity = Vector3.zero;
             if (col.GetComponent<PlayerController3D>().getFacingRight())
             {
                 rotationObject.transform.Rotate(Vector3.up, 90f, Space.Self);
-                col.gameObject.transform.Rotate(Vector3.up, 180f, Space.Self);
+                col.gameObject.transform.Rotate(Vector3.up, -90f, Space.Self);
             }
             else
             {
                 rotationObject.transform.Rotate(Vector3.up, -90f, Space.Self);
-                col.gameObject.transform.Rotate(Vector3.up, -180f, Space.Self);
+                col.gameObject.transform.Rotate(Vector3.up, 90f, Space.Self);
             }
+            col.gameObject.transform.position = this.transform.position;
         }
     }
 
