@@ -28,7 +28,7 @@ public class PlayerController3D : MonoBehaviour {
     public GameObject bullet;
     private Animator anim;
 
-    bool grounded = false;
+    bool grounded = true;
     public Transform groundCheck;
     //How big sphere will be
     float groundRadius = 0.2f;
@@ -51,7 +51,7 @@ public class PlayerController3D : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+        grounded = Physics.CheckSphere(groundCheck.position, groundRadius, whatIsGround);
         anim.SetBool("Ground", grounded);
 
         //Vertical Speed
@@ -86,10 +86,11 @@ public class PlayerController3D : MonoBehaviour {
             Flip();
 
         staminaText.text = stamina.ToString();
-        staminaSlider.value = stamina;
+    //    staminaSlider.value = stamina;
 
-        healthText.text = health.ToString();
-        healthSlider.value = health;
+     //   healthText.text = health.ToString();
+     //   healthSlider.value = health;
+        Debug.Log(grounded);
 	}
 
     void Update()
@@ -102,7 +103,7 @@ public class PlayerController3D : MonoBehaviour {
         if (grounded && Input.GetKeyUp(KeyCode.Space))
         {
             grounded = false;
-            anim.SetBool("Ground", false);
+            anim.SetBool("Ground", grounded);
             rigidbody.AddForce(new Vector2(0, jumpForce));
         }
 
@@ -131,6 +132,7 @@ public class PlayerController3D : MonoBehaviour {
             ticks = 0;
         }
         ticks++;
+        
     }
 
     void Fire()
