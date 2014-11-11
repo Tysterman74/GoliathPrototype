@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController3D : MonoBehaviour {
 
 
     private const float walkSpeed = 5f;
@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour {
         anim.SetBool("Ground", grounded);
 
         //Vertical Speed
-        anim.SetFloat("vSpeed", rigidbody2D.velocity.y);
+        anim.SetFloat("vSpeed", rigidbody.velocity.y);
 
         //In fixed update, dont need to do Time.deltaTime
         //Do all physics in fixed updated.
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour {
 
         anim.SetFloat("Speed", Mathf.Abs(move));
 
-        rigidbody2D.velocity = new Vector2(move * maxSpeed, rigidbody2D.velocity.y);
+        rigidbody.velocity = new Vector2(move * maxSpeed, rigidbody.velocity.y);
 
         if (move > 0 && !facingRight)
             Flip();
@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour {
         {
             grounded = false;
             anim.SetBool("Ground", false);
-            rigidbody2D.AddForce(new Vector2(0, jumpForce));
+            rigidbody.AddForce(new Vector2(0, jumpForce));
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
