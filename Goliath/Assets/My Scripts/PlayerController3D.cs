@@ -28,7 +28,7 @@ public class PlayerController3D : MonoBehaviour {
     public GameObject bullet;
     private Animator anim;
 
-    bool grounded = true;
+    public bool grounded = false;
     public Transform groundCheck;
     //How big sphere will be
     float groundRadius = 0.2f;
@@ -45,13 +45,20 @@ public class PlayerController3D : MonoBehaviour {
         healthText = GameObject.Find("HealthValue").GetComponent<Text>();
         healthSlider = GameObject.Find("HealthSlider").GetComponent<Slider>();
         healthText.text = health.ToString();
-
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () 
     {
-        grounded = Physics.CheckSphere(groundCheck.position, groundRadius, whatIsGround);
+        //Physics.OverlapSphere
+        Collider[] test = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
+        foreach (Collider t in test) {
+            Debug.Log(t.gameObject.transform.name);
+        }
+        if (test != null)
+            grounded = true;
+        else
+            grounded = false;
         anim.SetBool("Ground", grounded);
 
         //Vertical Speed
@@ -86,11 +93,11 @@ public class PlayerController3D : MonoBehaviour {
             Flip();
 
         staminaText.text = stamina.ToString();
-    //    staminaSlider.value = stamina;
+        staminaSlider.value = stamina;
 
-     //   healthText.text = health.ToString();
-     //   healthSlider.value = health;
-        Debug.Log(grounded);
+        healthText.text = health.ToString();
+        healthSlider.value = health;
+        test = null;
 	}
 
     void Update()
@@ -103,8 +110,9 @@ public class PlayerController3D : MonoBehaviour {
         if (grounded && Input.GetKeyUp(KeyCode.Space))
         {
             grounded = false;
-            anim.SetBool("Ground", grounded);
-            rigidbody.AddForce(new Vector2(0, jumpForce));
+            anim.SetBool("Ground", false);
+            rigidbody.AddForce(new Vector3(0, jumpForce, 0));
+            Debug.Log("MYAH");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -132,7 +140,6 @@ public class PlayerController3D : MonoBehaviour {
             ticks = 0;
         }
         ticks++;
-        
     }
 
     void Fire()
