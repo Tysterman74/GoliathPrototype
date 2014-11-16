@@ -5,13 +5,13 @@ public class RotationScript : MonoBehaviour {
 
     private bool switchOn = false;
     private GameObject rotationObject;
-    private GameObject rightRotationTrigger;
-    private GameObject leftRotationTrigger;
+ //   private GameObject rightRotationTrigger;
+  //  private GameObject leftRotationTrigger;
 	// Use this for initialization
 	void Start () {
         rotationObject = GameObject.Find("Rotation");
-        rightRotationTrigger = GameObject.Find("RotationTriggerRight");
-        leftRotationTrigger = GameObject.Find("RotationTriggerLeft");
+   //    rightRotationTrigger = GameObject.Find("RotationTriggerRight");
+   //     leftRotationTrigger = GameObject.Find("RotationTriggerLeft");
 
         //5.9294, 0.5595, -3.3482
 	}

@@ -52,14 +52,15 @@ public class PlayerController3D : MonoBehaviour {
     {
         //Physics.OverlapSphere
         Collider[] test = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
-        foreach (Collider t in test) {
-            Debug.Log(t.gameObject.transform.name);
-        }
+   //     foreach (Collider t in test) {
+    //        Debug.Log(t.gameObject.transform.name);
+    //    }
         if (test != null)
             grounded = true;
         else
             grounded = false;
         anim.SetBool("Ground", grounded);
+    //    Debug.Log(grounded);
 
         //Vertical Speed
         anim.SetFloat("vSpeed", rigidbody.velocity.y);
@@ -92,11 +93,11 @@ public class PlayerController3D : MonoBehaviour {
         else if (move < 0 && facingRight)
             Flip();
 
-        staminaText.text = stamina.ToString();
-        staminaSlider.value = stamina;
+     //   staminaText.text = stamina.ToString();
+    //    staminaSlider.value = stamina;
 
-        healthText.text = health.ToString();
-        healthSlider.value = health;
+   //     healthText.text = health.ToString();
+   //     healthSlider.value = health;
         test = null;
 	}
 

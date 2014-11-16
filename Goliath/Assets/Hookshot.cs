@@ -15,7 +15,7 @@ public class Hookshot : MonoBehaviour {
     private GameObject positionToLand;
 
     private LineRenderer rope;
-
+     
     private bool grapple = false;
     private bool floating = false;
     private bool throwRope = false;
