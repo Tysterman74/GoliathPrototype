@@ -24,6 +24,7 @@ public class PlayerController3D : MonoBehaviour {
     private bool running = false;
     private bool fired = false;
     private bool facingRight = true;
+    public bool isAttacking = false;
 
     public GameObject bullet;
     private Animator anim;
@@ -51,14 +52,17 @@ public class PlayerController3D : MonoBehaviour {
 	void FixedUpdate () 
     {
         //Physics.OverlapSphere
-        Collider[] test = Physics.OverlapSphere(groundCheck.position, groundRadius, whatIsGround);
+        grounded = Physics.CheckSphere(groundCheck.position, groundRadius, whatIsGround);
    //     foreach (Collider t in test) {
     //        Debug.Log(t.gameObject.transform.name);
     //    }
+
+        /*
         if (test != null)
             grounded = true;
         else
             grounded = false;
+         */
         anim.SetBool("Ground", grounded);
     //    Debug.Log(grounded);
 
@@ -98,7 +102,7 @@ public class PlayerController3D : MonoBehaviour {
 
    //     healthText.text = health.ToString();
    //     healthSlider.value = health;
-        test = null;
+        
 	}
 
     void Update()
@@ -108,7 +112,7 @@ public class PlayerController3D : MonoBehaviour {
             Application.Quit();
         }
 
-        if (grounded && Input.GetKeyUp(KeyCode.Space))
+        if (grounded && Input.GetKeyDown(KeyCode.Space))
         {
             grounded = false;
             anim.SetBool("Ground", false);
@@ -141,6 +145,12 @@ public class PlayerController3D : MonoBehaviour {
             ticks = 0;
         }
         ticks++;
+
+        if (isAttacking)
+        {
+            Fire();
+            isAttacking = !isAttacking;
+        }
     }
 
     void Fire()
@@ -148,9 +158,9 @@ public class PlayerController3D : MonoBehaviour {
         anim.SetTrigger("Attack");
         GameObject newBullet = (GameObject)Instantiate(bullet, transform.position, bullet.transform.rotation);
         if (facingRight)
-            newBullet.rigidbody2D.AddForce(new Vector2(700.0f, 0f));
+            newBullet.rigidbody.AddForce(new Vector2(700.0f, 0f));
         else
-            newBullet.rigidbody2D.AddForce(new Vector2(-700.0f, 0f));
+            newBullet.rigidbody.AddForce(new Vector2(-700.0f, 0f));
     }
 
     void Flip()

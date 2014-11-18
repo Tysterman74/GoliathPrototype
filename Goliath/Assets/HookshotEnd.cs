@@ -22,9 +22,11 @@ public class HookshotEnd : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
+        Debug.Log("ASD");
         if (col.gameObject.tag == "Player")
         {
             hookshotBegin.GetComponent<Hookshot3D>().finishFloat();
+            Debug.Log("SDF");
         }
     }
 

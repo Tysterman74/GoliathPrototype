@@ -90,8 +90,8 @@ public class Hookshot3D : MonoBehaviour {
             rope.SetPosition(0, player.transform.position);
             rope.SetPosition(1, destination.transform.position);
             float step = 20 * Time.deltaTime;
-            player.transform.position = Vector2.MoveTowards(player.transform.position, destination.transform.position, step);
-            Debug.Log(destination.transform.position);
+            player.transform.position = Vector3.MoveTowards(player.transform.position, destination.transform.position, step);
+            //Debug.Log(destination.transform.position);
             if (player.transform.position == destination.transform.position)
             {
                 Debug.Log("Get money");
